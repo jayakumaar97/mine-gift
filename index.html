@@ -19,9 +19,10 @@
 
 <body>
 
-    <!-- 3D & Heart Canvases -->
+    <!-- 3D, Heart & Trail Canvases -->
     <div id="three-container"></div>
     <canvas id="heart-canvas"></canvas>
+    <canvas id="trail-canvas"></canvas>
 
     <!-- Music Control -->
     <div class="music-control" id="music-btn">
@@ -48,25 +49,25 @@
             <h2 class="text-center display-4 mb-5 text-white">Our Memories</h2>
             <div class="row g-4">
                 <div class="col-12 col-md-6 col-lg-3">
-                    <div class="glass-card memory-card">
+                    <div class="glass-card memory-card" onclick="openLightbox(this)">
                         <img src="./images/our-first-selfie.jpeg" class="img-fluid rounded mb-3" alt="Memory">
                         <p class="text-center mb-0">Our first selfie</p>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-3">
-                    <div class="glass-card memory-card">
+                    <div class="glass-card memory-card" onclick="openLightbox(this)">
                         <img src="./images/my-fav-memory.jpeg" class="img-fluid rounded mb-3" alt="Memory">
                         <p class="text-center mb-0">My favorite memory</p>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-3">
-                    <div class="glass-card memory-card">
+                    <div class="glass-card memory-card" onclick="openLightbox(this)">
                         <img src="./images/the-moment-i-realized.jpeg" class="img-fluid rounded mb-3" alt="Memory">
                         <p class="text-center mb-0">The moment I realized...</p>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 col-lg-3">bir
-                    <div class="glass-card memory-card">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="glass-card memory-card" onclick="openLightbox(this)">
                         <img src="./images/the-happiest-day.jpeg" class="img-fluid rounded mb-3" alt="Memory">
                         <p class="text-center mb-0">The happiest day</p>
                     </div>
@@ -193,6 +194,33 @@
         <div class="glass-card p-5 text-center">
             <h1 class="display-2 text-white" id="response-text"></h1>
             <p class="fs-4 text-white">My heart belongs to you forever.</p>
+        </div>
+    </div>
+
+    <!-- Secret Message Modal -->
+    <div class="modal fade" id="secretModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="glass-card p-5 text-center w-100 modal-content border-0">
+                <h2 class="display-5 mb-3 text-pink">I have something to tell you ❤️</h2>
+                <p class="fs-4 text-white">Meeting you was the best moment in my life.</p>
+                <div class="mt-4">
+                    <button class="btn btn-lg btn-pink" onclick="continueSurprise()">Continue the surprise</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="glass-card p-3 text-center w-100 modal-content border-0">
+                <img id="lightbox-img" src="" class="img-fluid rounded mb-3" alt="Memory"
+                    style="max-height: 80vh; object-fit: contain;">
+                <p id="lightbox-caption" class="fs-4 text-white mb-0"></p>
+                <div class="mt-3">
+                    <button type="button" class="btn btn-pink" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
     </div>
 

@@ -10,12 +10,113 @@ document.addEventListener('DOMContentLoaded', () => {
 
     init(initThreeBackground, 'Three.js Background');
     init(initHeartCanvas, 'Heart Canvas');
+    init(initTrailCanvas, 'Cursor Trail');
     init(initGSAPAnimations, 'GSAP Animations');
     init(initCountdown, 'Countdown');
     init(initTypedLetter, 'Typed Letter');
     init(initSurprise, 'Surprise');
     init(initMusicControl, 'Music Control');
+    init(initSecretMessage, 'Secret Message');
 });
+
+// Global functions for interactions
+function openLightbox(card) {
+    const img = card.querySelector('img');
+    const caption = card.querySelector('p');
+    
+    document.getElementById('lightbox-img').src = img.src;
+    document.getElementById('lightbox-caption').innerText = caption.innerText;
+    
+    const lightboxModal = new bootstrap.Modal(document.getElementById('lightboxModal'));
+    lightboxModal.show();
+}
+
+// 2. Cursor Trail Content
+function initTrailCanvas() {
+    const canvas = document.getElementById('trail-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    class TrailParticle {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            this.size = Math.random() * 8 + 2;
+            this.speedX = (Math.random() - 0.5) * 2;
+            this.speedY = (Math.random() - 0.5) * 2;
+            this.opacity = 1;
+            this.color = `hsla(${Math.random() * 20 + 340}, 100%, 70%, `; // Pinkish
+        }
+
+        draw() {
+            ctx.fillStyle = this.color + this.opacity + ')';
+            ctx.beginPath();
+            const topY = this.y - this.size / 2;
+            ctx.moveTo(this.x, topY + this.size / 4);
+            ctx.bezierCurveTo(this.x, topY, this.x - this.size / 2, topY, this.x - this.size / 2, topY + this.size / 4);
+            ctx.bezierCurveTo(this.x - this.size / 2, topY + this.size / 2, this.x, topY + this.size * 0.75, this.x, this.y);
+            ctx.bezierCurveTo(this.x, topY + this.size * 0.75, this.x + this.size / 2, topY + this.size / 2, this.x + this.size / 2, topY + this.size / 4);
+            ctx.bezierCurveTo(this.x + this.size / 2, topY, this.x, topY, this.x, topY + this.size / 4);
+            ctx.fill();
+        }
+
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            this.opacity -= 0.02;
+        }
+    }
+
+    function addParticle(x, y) {
+        for (let i = 0; i < 2; i++) {
+            particles.push(new TrailParticle(x, y));
+        }
+    }
+
+    window.addEventListener('mousemove', (e) => addParticle(e.clientX, e.clientY));
+    window.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+            addParticle(e.touches[0].clientX, e.touches[0].clientY);
+        }
+    });
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
+            if (particles[i].opacity <= 0) {
+                particles.splice(i, 1);
+                i--;
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    animate();
+}
+
+// 8. Secret Message Timer
+function initSecretMessage() {
+    setTimeout(() => {
+        const secretModal = new bootstrap.Modal(document.getElementById('secretModal'));
+        secretModal.show();
+    }, 10000); // 10 seconds
+}
+
+function continueSurprise() {
+    const modalEl = document.getElementById('secretModal');
+    const modal = bootstrap.Modal.getInstance(modalEl);
+    modal.hide();
+    scrollToSection('surprise');
+}
 
 // 1. Three.js 3D Background
 function initThreeBackground() {
