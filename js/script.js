@@ -319,6 +319,8 @@ function initTypedLetter() {
 }
 
 // 6. Surprise Interaction
+let cakeState = 0; // 0: unlit, 1: lit, 2: cut
+
 function initSurprise() {
     const btn = document.getElementById('surprise-btn');
     btn.addEventListener('click', () => {
@@ -381,7 +383,10 @@ function finalResponse(text) {
     // Close on click-out/overlay click
     const closeOverlay = () => {
         overlay.classList.add('d-none');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Only scroll up if we aren't showing the cake section
+        if (document.getElementById('cake-section').classList.contains('d-none')) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
         overlay.removeEventListener('click', closeOverlay);
     };
     overlay.addEventListener('click', closeOverlay);
@@ -390,7 +395,7 @@ function finalResponse(text) {
     card.addEventListener('click', (e) => e.stopPropagation());
 
     // Extra confetti
-    const duration = 15 * 1000;
+    const duration = 3 * 1000;
     const animationEnd = Date.now() + duration;
     const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 3000 };
 
@@ -402,6 +407,92 @@ function finalResponse(text) {
         const timeLeft = animationEnd - Date.now();
 
         if (timeLeft <= 0) {
+            clearInterval(interval);
+            // Add a button to go to the cake after confetti
+            if (!document.getElementById('cake-trigger-btn')) {
+                const btnContainer = document.createElement('div');
+                btnContainer.className = 'mt-4';
+                btnContainer.innerHTML = `<button id="cake-trigger-btn" class="btn btn-lg btn-pink pulse" onclick="finalSurprise()">See Your Birthday Cake 🎂</button>`;
+                card.appendChild(btnContainer);
+            }
+            return;
+        }
+
+        const particleCount = 50 * (timeLeft / duration);
+        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+    }, 250);
+}
+
+function finalSurprise() {
+    // Hide final message overlay
+    document.getElementById('final-message').classList.add('d-none');
+
+    // Show cake section
+    const cakeSection = document.getElementById('cake-section');
+    cakeSection.classList.remove('d-none');
+    scrollToSection('cake-section');
+    
+    document.getElementById('cake-message').innerText = "Click the cake to light the candles! 🎂";
+}
+
+function handleCakeClick() {
+    const cake = document.getElementById('birthday-cake');
+    const message = document.getElementById('cake-message');
+    
+    if (cakeState === 0) {
+        // Step 1: Light Candles
+        cake.classList.add('lit');
+        message.innerText = "Make a wish and click again to cut the cake 🎂";
+        
+        // Small sparkles
+        confetti({
+            particleCount: 50,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#ffae00', '#fff', '#ff85c0']
+        });
+        
+        cakeState = 1;
+    } else if (cakeState === 1) {
+        // Step 2: Cut Cake
+        cake.classList.add('cutting');
+        message.innerText = "";
+        
+        // Show fireworks/confetti
+        confetti({
+            particleCount: 150,
+            spread: 100,
+            origin: { y: 0.6 }
+        });
+
+        // Trigger Fireworks in background
+        initFireworks();
+
+        // Step 3 & 4: Final Message
+        setTimeout(() => {
+            finalResponse("Happy Birthday My Love ❤️\nI hope this small surprise made you smile.\nYou deserve all the happiness in the world.\nI love you forever.");
+            document.getElementById('final-buttons').classList.remove('d-none');
+            document.getElementById('cake-title').innerText = "Happy Birthday! 🎂";
+        }, 1000);
+        
+        cakeState = 2;
+    }
+}
+
+function initFireworks() {
+    const duration = 5 * 1000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+    function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
+    const interval = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
             return clearInterval(interval);
         }
 
@@ -409,4 +500,44 @@ function finalResponse(text) {
         confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
         confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
     }, 250);
+}
+
+function blowKiss() {
+    // Burst of elegant hearts
+    const scalar = 2.5;
+    const heart = confetti.shapeFromPath({ path: 'M167 10c-17.5-16-45.7-16-63.2 0L87.5 25.7 71.2 10c-17.5-16-45.7-16-63.2 0-18.7 17.2-18.7 45.1 0 62.3l79.5 73.1 79.5-73.1c18.7-17.2 18.7-45.1 0-62.3z' });
+
+    confetti({
+        shapes: [heart],
+        particleCount: 100,
+        spread: 120,
+        origin: { y: 0.7 },
+        colors: ['#ff6ec4', '#ff85c0', '#7873f5'],
+        scalar
+    });
+}
+
+function replaySurprise() {
+    // Reset state
+    cakeState = 0;
+    const cake = document.getElementById('birthday-cake');
+    if (cake) cake.classList.remove('lit', 'cutting');
+    
+    document.getElementById('cake-section').classList.add('d-none');
+    document.getElementById('final-buttons').classList.add('d-none');
+    document.getElementById('final-message').classList.add('d-none');
+    
+    // Reset surprise section elements
+    const giftResult = document.getElementById('gift-result');
+    if (giftResult) giftResult.classList.add('d-none');
+    
+    const giftHeart = document.querySelector('.heart-gift');
+    if (giftHeart) giftHeart.parentElement.style.opacity = '1';
+
+    // Remove dynamic button if exists
+    const cakeTrigger = document.getElementById('cake-trigger-btn');
+    if (cakeTrigger) cakeTrigger.parentElement.remove();
+    
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }

@@ -251,6 +251,35 @@
             </div>
         </div>
     </div>
+    <!-- Section 7: Final Birthday Cake -->
+    <section id="cake-section" class="py-5 bg-transparent min-vh-100 d-flex align-items-center d-none">
+        <div class="container text-center">
+            <h2 class="display-4 mb-5 text-white fade-in" id="cake-title">For You, My Love...</h2>
+            
+            <div class="cake-container mx-auto mb-5" id="birthday-cake" onclick="handleCakeClick()">
+                <div class="cake-plate"></div>
+                <div class="cake-bottom tier"></div>
+                <div class="cake-middle tier"></div>
+                <div class="cake-top tier">
+                    <div class="cake-drip"></div>
+                </div>
+                <div class="candles-container">
+                    <div class="candle c1"><div class="flame"></div></div>
+                    <div class="candle c2"><div class="flame"></div></div>
+                    <div class="candle c3"><div class="flame"></div></div>
+                </div>
+            </div>
+
+            <p class="fs-4 text-white" id="cake-message"></p>
+
+            <div id="final-buttons" class="d-none mt-5">
+                <div class="d-flex justify-content-center gap-3">
+                    <button class="btn btn-lg btn-pink" onclick="blowKiss()">Blow Me a Kiss 💋</button>
+                    <button class="btn btn-lg btn-outline-light rounded-pill" onclick="replaySurprise()">Replay the Surprise ❤️</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Lightbox Modal -->
     <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
