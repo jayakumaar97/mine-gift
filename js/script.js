@@ -105,10 +105,21 @@ function initTrailCanvas() {
 
 // 8. Secret Message Timer
 function initSecretMessage() {
+    const showModal = () => {
+        const modalEl = document.getElementById('secretModal');
+        // Only show if not already visible
+        if (!modalEl.classList.contains('show')) {
+            const secretModal = new bootstrap.Modal(modalEl);
+            secretModal.show();
+        }
+    };
+
+    // Initial delay: 40 seconds
     setTimeout(() => {
-        const secretModal = new bootstrap.Modal(document.getElementById('secretModal'));
-        secretModal.show();
-    }, 10000); // 10 seconds
+        showModal();
+        // Recurring interval: 1 minute (60,000 ms)
+        setInterval(showModal, 60000);
+    }, 40000);
 }
 
 function continueSurprise() {
@@ -241,7 +252,7 @@ function initGSAPAnimations() {
     });
 
     // Sections Scroll Animation
-    const sections = ['#memories', '#reasons', '#countdown', '#letter', '#surprise'];
+    const sections = ['#memories', '#reasons', '#timeline', '#countdown', '#letter', '#surprise'];
     sections.forEach(section => {
         gsap.from(`${section} .glass-card`, {
             scrollTrigger: {
