@@ -1,0 +1,228 @@
+:root {
+    --primary-pink: #ff6ec4;
+    --primary-purple: #7873f5;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --text-color: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: var(--text-color);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+.display-3,
+.display-4 {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Background Effects */
+#three-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+#heart-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Glassmorphism Classes */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(255, 110, 196, 0.2);
+}
+
+/* Section Spacing */
+section {
+    position: relative;
+    padding: 100px 0;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+
+/* Hero Section */
+#hero {
+    background: transparent;
+}
+
+.hero-card {
+    max-width: 800px;
+    width: 90%;
+}
+
+.pulse-btn {
+    background: linear-gradient(45deg, var(--primary-pink), var(--primary-purple));
+    border: none;
+    box-shadow: 0 4px 15px rgba(255, 110, 196, 0.4);
+    transition: all 0.3s ease;
+}
+
+.pulse-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 110, 196, 0.6);
+}
+
+/* Memory Cards */
+.memory-card {
+    padding: 15px;
+    text-align: center;
+}
+
+.memory-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    object-position: center 10%;
+    border-radius: 12px;
+    transition: transform 0.5s ease;
+}
+
+.memory-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Reasons Cards */
+.text-pink {
+    color: var(--primary-pink);
+    text-shadow: 0 0 10px rgba(255, 110, 196, 0.5);
+}
+
+.reason-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+/* Countdown */
+.countdown-box {
+    min-width: 120px;
+    text-align: center;
+}
+
+.neon-text {
+    color: var(--primary-pink);
+    text-shadow: 0 0 10px var(--primary-pink), 0 0 20px var(--primary-pink);
+}
+
+/* Music Control */
+.music-control {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid var(--glass-border);
+    color: white;
+    font-size: 1.2rem;
+}
+
+/* Love Letter */
+.typed-message {
+    font-style: italic;
+    line-height: 1.8;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.btn-pink {
+    background: var(--primary-pink);
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 30px;
+}
+
+.btn-pink:hover {
+    background: #ff4dad;
+    color: white;
+}
+
+.modal-content {
+    background: transparent;
+}
+
+.final-msg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .display-3 {
+        font-size: 2.5rem;
+    }
+
+    .display-4 {
+        font-size: 2rem;
+    }
+
+    section {
+        padding: 60px 0;
+    }
+
+    .countdown-box {
+        min-width: 80px;
+        padding: 15px !important;
+    }
+}

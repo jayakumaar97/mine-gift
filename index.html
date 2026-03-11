@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Love ❤️</title>
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- 3D & Heart Canvases -->
+    <div id="three-container"></div>
+    <canvas id="heart-canvas"></canvas>
+
+    <!-- Music Control -->
+    <div class="music-control" id="music-btn">
+        <i class="fas fa-play"></i>
+        <audio id="romantic-music" loop preload="auto">
+            <!-- <source src="https://audio.com/migueldasinternets/audio/blue-yung-kai" type="audio/mpeg"> -->
+            <source src="./song/Blue-Yung-Kai.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Section 1: Hero -->
+    <section id="hero" class="vh-100 d-flex align-items-center justify-content-center text-center">
+        <div class="glass-card hero-card p-5 animate-hero">
+            <h1 class="display-3 fw-bold mb-4">Happy Birthday My Love ❤️</h1>
+            <p class="lead mb-5">March 14 is special because the most beautiful person in my life was born.</p>
+            <button class="btn btn-primary btn-lg pulse-btn px-5 py-3" onclick="scrollToSection('memories')">Open My
+                Heart</button>
+        </div>
+    </section>
+
+    <!-- Section 2: Our Memories -->
+    <section id="memories" class="py-5 bg-transparent">
+        <div class="container py-5">
+            <h2 class="text-center display-4 mb-5 text-white">Our Memories</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="glass-card memory-card">
+                        <img src="./images/our-first-selfie.jpeg" class="img-fluid rounded mb-3" alt="Memory">
+                        <p class="text-center mb-0">Our first selfie</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="glass-card memory-card">
+                        <img src="./images/my-fav-memory.jpeg" class="img-fluid rounded mb-3" alt="Memory">
+                        <p class="text-center mb-0">My favorite memory</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="glass-card memory-card">
+                        <img src="./images/the-moment-i-realized.jpeg" class="img-fluid rounded mb-3" alt="Memory">
+                        <p class="text-center mb-0">The moment I realized...</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="glass-card memory-card">
+                        <img src="./images/the-happiest-day.jpeg" class="img-fluid rounded mb-3" alt="Memory">
+                        <p class="text-center mb-0">The happiest day</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Reasons Why I Love You -->
+    <section id="reasons" class="py-5 bg-transparent">
+        <div class="container py-5">
+            <h2 class="text-center display-4 mb-5 text-white">Reasons Why I Love You</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="glass-card reason-card p-4 h-100 text-center">
+                        <i class="fas fa-heart fa-3x mb-3 text-pink"></i>
+                        <h3>Your beautiful smile</h3>
+                        <p>It brightens up even my darkest days.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card reason-card p-4 h-100 text-center">
+                        <i class="fas fa-hand-holding-heart fa-3x mb-3 text-pink"></i>
+                        <h3>Your kindness</h3>
+                        <p>The way you care for everyone is inspiring.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card reason-card p-4 h-100 text-center">
+                        <i class="fas fa-shield-alt fa-3x mb-3 text-pink"></i>
+                        <h3>Your support</h3>
+                        <p>You are my rock in everything I do.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card reason-card p-4 h-100 text-center">
+                        <i class="fas fa-face-smile-wink fa-3x mb-3 text-pink"></i>
+                        <h3>Your cute laugh</h3>
+                        <p>The most beautiful sound in the world.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card reason-card p-4 h-100 text-center">
+                        <i class="fas fa-star fa-3x mb-3 text-pink"></i>
+                        <h3>The way you care</h3>
+                        <p>I feel so loved when I am with you.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card reason-card p-4 h-100 text-center">
+                        <i class="fas fa-infinity fa-3x mb-3 text-pink"></i>
+                        <h3>Everything about you</h3>
+                        <p>I wouldn't change a single thing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Birthday Countdown -->
+    <section id="countdown" class="py-5 bg-transparent">
+        <div class="container py-5 text-center">
+            <h2 class="display-4 text-white mb-5">Counting down to your special day...</h2>
+            <div class="d-flex justify-content-center gap-4 flex-wrap">
+                <div class="glass-card countdown-box p-4">
+                    <div id="days" class="display-4 fw-bold neon-text">00</div>
+                    <div>Days</div>
+                </div>
+                <div class="glass-card countdown-box p-4">
+                    <div id="hours" class="display-4 fw-bold neon-text">00</div>
+                    <div>Hours</div>
+                </div>
+                <div class="glass-card countdown-box p-4">
+                    <div id="minutes" class="display-4 fw-bold neon-text">00</div>
+                    <div>Minutes</div>
+                </div>
+                <div class="glass-card countdown-box p-4">
+                    <div id="seconds" class="display-4 fw-bold neon-text">00</div>
+                    <div>Seconds</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Love Letter -->
+    <section id="letter" class="py-5 bg-transparent">
+        <div class="container py-5">
+            <div class="glass-card letter-card p-5 mx-auto" style="max-width: 800px;">
+                <div id="typed-text" class="typed-message fs-4"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Birthday Surprise -->
+    <section id="surprise" class="py-5 bg-transparent text-center">
+        <div class="container py-5">
+            <div class="glass-card p-5 animate-surprise">
+                <h2 class="display-3 mb-4 text-white">One More Thing...</h2>
+                <button id="surprise-btn" class="btn btn-primary btn-lg pulse-btn px-5 py-3 mt-4">Open Your Birthday
+                    Gift 🎁</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Popup for Surprise -->
+    <div class="modal fade" id="giftModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="glass-card p-5 text-center w-100 modal-content border-0">
+                <h2 class="display-5 mb-3 text-pink">Surprise! ❤️</h2>
+                <p class="fs-4 text-white">You are the most precious gift in my life.<br>I love you forever ❤️</p>
+                <div class="mt-4">
+                    <p class="fs-3 text-white">Will you stay with me forever? ❤️</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <button class="btn btn-lg btn-pink" onclick="finalResponse('YES 💖')">YES 💖</button>
+                        <button class="btn btn-lg btn-pink" onclick="finalResponse('ALWAYS 💕')">ALWAYS 💕</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Final Message -->
+    <div id="final-message" class="final-msg-overlay d-none">
+        <div class="glass-card p-5 text-center">
+            <h1 class="display-2 text-white" id="response-text"></h1>
+            <p class="fs-4 text-white">My heart belongs to you forever.</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Typed.js -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <!-- Bootstrap Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Interaction logic -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
