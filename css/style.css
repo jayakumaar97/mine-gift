@@ -135,6 +135,7 @@ section {
 .neon-text {
     color: var(--primary-pink);
     text-shadow: 0 0 10px var(--primary-pink), 0 0 20px var(--primary-pink);
+    font-family: 'Poppins', sans-serif !important;
 }
 
 /* Music Control */

@@ -261,8 +261,21 @@ function finalResponse(text) {
     // Show final overlay
     const overlay = document.getElementById('final-message');
     const responseText = document.getElementById('response-text');
+    const card = overlay.querySelector('.glass-card');
+
     responseText.innerText = text;
     overlay.classList.remove('d-none');
+
+    // Close on click-out/overlay click
+    const closeOverlay = () => {
+        overlay.classList.add('d-none');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        overlay.removeEventListener('click', closeOverlay);
+    };
+    overlay.addEventListener('click', closeOverlay);
+    
+    // Prevent clicking the card from closing the overlay
+    card.addEventListener('click', (e) => e.stopPropagation());
 
     // Extra confetti
     const duration = 15 * 1000;
@@ -273,7 +286,7 @@ function finalResponse(text) {
         return Math.random() * (max - min) + min;
     }
 
-    const interval = setInterval(function() {
+    const interval = setInterval(function () {
         const timeLeft = animationEnd - Date.now();
 
         if (timeLeft <= 0) {
